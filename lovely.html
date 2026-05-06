@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <!-- Meta tags for character encoding and responsive design -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lovely Professional University - School Website</title>
+    
+    <!-- Internal CSS Styling -->
+    <style>
+        /* ========== GLOBAL STYLES ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Root colors for easy customization */
+        :root {
+            --primary-color: #1e90ff;      /* Blue */
+            --secondary-color: #0d5dcc;    /* Dark Blue */
+            --text-color: #333;            /* Dark Gray */
+            --light-bg: #f5f5f5;           /* Light Gray */
+            --white: #fff;                 /* White */
+            --success-color: #4CAF50;      /* Green */
+            --danger-color: #FF6B6B;       /* Red */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+        }
+
+        /* Container for max width and padding */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ========== HEADER AND NAVIGATION ========== */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--white);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        /* School Logo and Name */
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        /* Navigation Menu */
+        nav {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 15px;
+            border-radius: 5px;
+        }
+
+        /* Hover effect on navigation links */
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Mobile Menu Toggle Button (hidden by default) */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* ========== HOME/BANNER SECTION ========== */
+        #home {
+            background: linear-gradient(rgba(30, 144, 255, 0.8), rgba(13, 93, 204, 0.8)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f5f5f5" width="1200" height="600"/><circle cx="200" cy="150" r="100" fill="%231e90ff" opacity="0.1"/><circle cx="1000" cy="500" r="150" fill="%230d5dcc" opacity="0.1"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            text-align: center;
+            padding: 100px 20px;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .home-content {
+            max-width: 800px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .home-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .home-content p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            background: var(--white);
+            color: var(--primary-color);
+            padding: 15px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        /* Hover effect on CTA button */
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            background: var(--light-bg);
+        }
+
+        /* ========== ABOUT SECTION ========== */
+        #about {
+            background: var(--white);
+            padding: 80px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            color: var(--primary-color);
+            margin-bottom: 50px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+
+        .about-text p {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 80px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ========== COURSES SECTION ========== */
+        #courses {
+            background: var(--light-bg);
+            padding: 80px 20px;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .course-card {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--primary-color);
+        }
+
+        /* Hover effect on course cards */
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .course-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-color);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin: 0 auto 20px;
+        }
+
+        .course-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        .course-card p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .course-button {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 10px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .course-button:hover {
+            background: var(--secondary-color);
+            transform: scale(1.05);
+        }
+
+        /* ========== CONTACT SECTION ========== */
+        #contact {
+            background: var(--white);
+            padding: 80px 20px;
+        }
+
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--light-bg);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Form Groups */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        /* Focus effect on form inputs */
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 10px rgba(30, 144, 255, 0.3);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Submit Button */
+        .submit-button {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--white);
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(30, 144, 255, 0.3);
+        }
+
+        /* Error Message Styling */
+        .error-message {
+            color: var(--danger-color);
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background: #222;
+            color: #999;
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 3px solid var(--primary-color);
+        }
+
+        footer p {
+            margin: 10px 0;
+        }
+
+        /* ========== ANIMATIONS ========== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* ========== RESPONSIVE DESIGN (MOBILE) ========== */
+        @media (max-width: 768px) {
+            /* Show mobile menu toggle */
+            .menu-toggle {
+                display: block;
+            }
+
+            /* Collapse navigation menu on mobile */
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--secondary-color);
+                flex-direction: column;
+                padding: 20px;
+                gap: 10px;
+                display: none;
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            nav a {
+                padding: 12px;
+                border-radius: 5px;
+            }
+
+            /* Hero Section - Smaller on Mobile */
+            #home {
+                padding: 60px 20px;
+                min-height: 300px;
+            }
+
+            .home-content h1 {
+                font-size: 32px;
+            }
+
+            .home-content p {
+                font-size: 16px;
+            }
+
+            /* About Section - Stack on Mobile */
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .about-image {
+                height: 300px;
+            }
+
+            /* Section Padding - Reduced on Mobile */
+            #about,
+            #courses,
+            #contact {
+                padding: 50px 20px;
+            }
+
+            .section-title {
+                font-size: 28px;
+                margin-bottom: 30px;
+            }
+
+            /* Course Grid - Single Column on Mobile */
+            .courses-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            /* Contact Form - Full Width on Mobile */
+            .contact-container {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 20px;
+            }
+
+            .home-content h1 {
+                font-size: 24px;
+            }
+
+            .home-content p {
+                font-size: 14px;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+
+            .about-text h2 {
+                font-size: 22px;
+            }
+
+            .cta-button {
+                padding: 12px 30px;
+                font-size: 14px;
+            }
+        }
+
+        /* ========== SUCCESS ALERT MODAL ========== */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 400px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.3s ease;
+        }
+
+        .modal-content h2 {
+            color: var(--success-color);
+            margin-bottom: 15px;
+        }
+
+        .modal-content p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .close-modal {
+            background: var(--success-color);
+            color: var(--white);
+            padding: 10px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            background: #45a049;
+            transform: scale(1.05);
+        }
+
+        /* ========== WELCOME MESSAGE BUTTON ========== */
+        .welcome-btn {
+            background: var(--success-color);
+            color: var(--white);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .welcome-btn:hover {
+            background: #45a049;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <!-- ========== HEADER SECTION ========== -->
+    <header>
+        <div class="container">
+            <div class="header-container">
+                <!-- School Logo and Name -->
+                <div class="logo">
+                    <div class="logo-icon">📚</div>
+                    <span>Lovely Professional University</span>
+                </div>
+
+                <!-- Mobile Menu Toggle Button -->
+                <button class="menu-toggle" id="menuToggle">☰</button>
+
+                <!-- Navigation Menu -->
+                <nav id="navMenu">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#courses">Courses</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========== HOME SECTION ========== -->
+    <section id="home">
+        <div class="home-content">
+            <h1>Welcome to Lovely Professional University</h1>
+            <p>Excellence in Education, Building Future Leaders</p>
+            <button class="cta-button welcome-btn" id="welcomeBtn">Show Welcome Message</button>
+        </div>
+    </section>
+
+    <!-- ========== ABOUT SECTION ========== -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Us</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Know About Lovely Professional University</h2>
+                    <p>
+                        Lovely Professional University is a premier educational institution dedicated to providing quality education 
+                        and fostering the development of skilled professionals across various disciplines.
+                    </p>
+                    <p>
+                        With state-of-the-art infrastructure, experienced faculty, and a student-centric approach, we strive to nurture 
+                        talents and prepare them for global challenges.
+                    </p>
+                    <p>
+                        Our commitment to excellence, innovation, and holistic development ensures that every student leaves as a 
+                        responsible and accomplished professional.
+                    </p>
+                </div>
+                <div class="about-image">🏫</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== COURSES SECTION ========== -->
+    <section id="courses">
+        <div class="container">
+            <h2 class="section-title">Our Courses</h2>
+            <div class="courses-grid">
+                <!-- Course 1 -->
+                <div class="course-card">
+                    <div class="course-icon">💻</div>
+                    <h3>Computer Science & Engineering</h3>
+                    <p>
+                        Learn programming, web development, artificial intelligence, and cloud computing. 
+                        Build your career in the tech industry.
+                    </p>
+                    <button class="course-button">Learn More</button>
+                </div>
+
+                <!-- Course 2 -->
+                <div class="course-card">
+                    <div class="course-icon">🔬</div>
+                    <h3>Mechanical Engineering</h3>
+                    <p>
+                        Master the design and manufacturing of mechanical systems. Develop skills in CAD, 
+                        robotics, and automation.
+                    </p>
+                    <button class="course-button">Learn More</button>
+                </div>
+
+                <!-- Course 3 -->
+                <div class="course-card">
+                    <div class="course-icon">📊</div>
+                    <h3>Business Administration</h3>
+                    <p>
+                        Gain knowledge in management, finance, marketing, and entrepreneurship. 
+                        Become a successful business leader.
+                    </p>
+                    <button class="course-button">Learn More</button>
+                </div>
+
+                <!-- Course 4 -->
+                <div class="course-card">
+                    <div class="course-icon">🌍</div>
+                    <h3>Civil Engineering</h3>
+                    <p>
+                        Study infrastructure development, construction management, and environmental engineering. 
+                        Build the future.
+                    </p>
+                    <button class="course-button">Learn More</button>
+                </div>
+
+                <!-- Course 5 -->
+                <div class="course-card">
+                    <div class="course-icon">⚡</div>
+                    <h3>Electrical Engineering</h3>
+                    <p>
+                        Learn about power systems, electronics, telecommunications, and renewable energy. 
+                        Innovate the future.
+                    </p>
+                    <button class="course-button">Learn More</button>
+                </div>
+
+                <!-- Course 6 -->
+                <div class="course-card">
+                    <div class="course-icon">🎓</div>
+                    <h3>Information Technology</h3>
+                    <p>
+                        Specialize in software development, cybersecurity, data science, and IT management. 
+                        Lead digital transformation.
+                    </p>
+                    <button class="course-button">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CONTACT SECTION ========== -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-container">
+                <form id="contactForm">
+                    <!-- Name Input -->
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                        <div class="error-message" id="nameError"></div>
+                    </div>
+
+                    <!-- Email Input -->
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                        <div class="error-message" id="emailError"></div>
+                    </div>
+
+                    <!-- Message Input -->
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
+                        <div class="error-message" id="messageError"></div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="submit-button">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Lovely Professional University. All rights reserved.</p>
+            <p>📍 Jalandhar, Punjab, India | 📧 info@lpu.in | 📞 +91-1824-506-506</p>
+        </div>
+    </footer>
+
+    <!-- ========== SUCCESS MODAL ========== -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <h2>✓ Success!</h2>
+            <p>Your message has been sent successfully. We will get back to you soon!</p>
+            <button class="close-modal" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <!-- ========== WELCOME MODAL ========== -->
+    <div id="welcomeModal" class="modal">
+        <div class="modal-content">
+            <h2>Welcome! 👋</h2>
+            <p>Welcome to Lovely Professional University! We're excited to have you here. Explore our courses, learn more about us, and get in touch. We're here to help!</p>
+            <button class="close-modal" onclick="closeWelcomeModal()">Close</button>
+        </div>
+    </div>
+
+    <!-- ========== INTERNAL JAVASCRIPT ========== -->
+    <script>
+        // ========== MOBILE MENU TOGGLE ==========
+        /* Toggle the mobile menu when the hamburger button is clicked */
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close the mobile menu when a link is clicked
+        const navLinks = document.querySelectorAll('#navMenu a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // ========== FORM VALIDATION ==========
+        /* Get the contact form element */
+        const contactForm = document.getElementById('contactForm');
+
+        /* Add event listener for form submission */
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent default form submission
+
+            // Get form input values
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            // Clear previous error messages
+            document.getElementById('nameError').textContent = '';
+            document.getElementById('emailError').textContent = '';
+            document.getElementById('messageError').textContent = '';
+
+            let isValid = true;
+
+            // ========== VALIDATION CHECKS ==========
+            
+            // Check if name field is empty
+            if (name === '') {
+                document.getElementById('nameError').textContent = 'Please enter your full name';
+                isValid = false;
+            }
+
+            // Check if email field is empty
+            if (email === '') {
+                document.getElementById('emailError').textContent = 'Please enter your email address';
+                isValid = false;
+            } 
+            // Check if email is in valid format (contains @ and .)
+            else if (!isValidEmail(email)) {
+                document.getElementById('emailError').textContent = 'Please enter a valid email address';
+                isValid = false;
+            }
+
+            // Check if message field is empty
+            if (message === '') {
+                document.getElementById('messageError').textContent = 'Please write a message';
+                isValid = false;
+            }
+
+            // If all validations pass, show success message
+            if (isValid) {
+                showSuccessModal();
+                contactForm.reset(); // Reset the form
+            }
+        });
+
+        // ========== EMAIL VALIDATION FUNCTION ==========
+        /* Check if email format is valid using regex */
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        // ========== SUCCESS MODAL FUNCTIONS ==========
+        /* Show success modal after form submission */
+        function showSuccessModal() {
+            const modal = document.getElementById('successModal');
+            modal.classList.add('show');
+
+            // Auto close modal after 3 seconds
+            setTimeout(() => {
+                closeModal();
+            }, 3000);
+        }
+
+        /* Close the success modal */
+        function closeModal() {
+            const modal = document.getElementById('successModal');
+            modal.classList.remove('show');
+        }
+
+        // ========== WELCOME MESSAGE BUTTON ==========
+        /* Get the welcome button */
+        const welcomeBtn = document.getElementById('welcomeBtn');
+
+        /* Show welcome modal when button is clicked */
+        welcomeBtn.addEventListener('click', function() {
+            const modal = document.getElementById('welcomeModal');
+            modal.classList.add('show');
+        });
+
+        /* Close the welcome modal */
+        function closeWelcomeModal() {
+            const modal = document.getElementById('welcomeModal');
+            modal.classList.remove('show');
+        }
+
+        // ========== CLOSE MODAL WHEN CLICKING OUTSIDE ==========
+        /* Close modal if user clicks outside the modal content */
+        window.addEventListener('click', function(event) {
+            const successModal = document.getElementById('successModal');
+            const welcomeModal = document.getElementById('welcomeModal');
+
+            if (event.target === successModal) {
+                successModal.classList.remove('show');
+            }
+            if (event.target === welcomeModal) {
+                welcomeModal.classList.remove('show');
+            }
+        });
+
+        // ========== SMOOTH SCROLLING ==========
+        /* Add smooth scrolling behavior to anchor links */
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
